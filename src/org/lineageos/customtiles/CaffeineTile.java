@@ -63,11 +63,8 @@ public class CaffeineTile extends TileService {
 
         stopCountDown();
         unregisterReceiver(mReceiver);
-        if (mWakeLock.isHeld()) {
+        if (mWakeLock.isHeld())
             mWakeLock.release();
-        }
-
-        refresh();
     }
 
     @Override
