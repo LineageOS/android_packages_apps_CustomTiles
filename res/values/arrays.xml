@@ -15,17 +15,16 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Custom Tiles</string>
 
-    <!-- Labels -->
-    <string name="ambient_display_label">Ambient display</string>
-    <string name="network_adb_label">ADB over network</string>
-    <string name="heads_up_label">Heads up</string>
-    <string name="sync_label">Sync</string>
-    <string name="volume_panel_label">Volume panel</string>
-    <string name="compass_label">Compass</string>
-
-    <!-- Compass -->
-    <string name="quick_settings_compass_init">Initializing\u2026</string>
-    <string name="quick_settings_compass_value" translatable="false"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <!-- Cardinal directions for the compass tile -->
+    <string-array name="cardinal_directions">
+        <item>N</item>  <!-- North -->
+        <item>NE</item> <!-- North east -->
+        <item>E</item>  <!-- East -->
+        <item>SE</item> <!-- South east -->
+        <item>S</item>  <!-- South -->
+        <item>SW</item> <!-- South west -->
+        <item>W</item>  <!-- West -->
+        <item>NW</item> <!-- North west -->
+    </string-array>
 </resources>
