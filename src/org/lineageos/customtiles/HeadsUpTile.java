@@ -53,4 +53,5 @@ public class HeadsUpTile extends TileService {
         }
         getQsTile().updateTile();
     }
+
 }

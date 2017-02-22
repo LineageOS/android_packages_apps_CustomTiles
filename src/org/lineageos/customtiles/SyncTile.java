@@ -50,4 +50,5 @@ public class SyncTile extends TileService {
         }
         getQsTile().updateTile();
     }
+
 }

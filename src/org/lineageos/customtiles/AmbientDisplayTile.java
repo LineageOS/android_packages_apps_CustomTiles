@@ -52,4 +52,5 @@ public class AmbientDisplayTile extends TileService {
         }
         getQsTile().updateTile();
     }
+
 }

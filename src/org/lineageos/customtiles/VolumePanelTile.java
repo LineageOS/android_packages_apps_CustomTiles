@@ -46,4 +46,5 @@ public class VolumePanelTile extends TileService {
         getQsTile().setState(Tile.STATE_ACTIVE);
         getQsTile().updateTile();
     }
+
 }
