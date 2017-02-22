@@ -51,6 +51,17 @@
             </intent-filter>
         </service>
 
+        <!-- ADB over network -->
+        <service
+            android:name=".AdbOverNetworkTile"
+            android:icon="@drawable/ic_network_adb_on"
+            android:label="@string/network_adb_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <!-- Heads up -->
         <service
             android:name=".HeadsUpTile"
