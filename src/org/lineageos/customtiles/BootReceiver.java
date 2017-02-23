@@ -25,12 +25,15 @@ import android.os.Build;
 import android.os.SystemProperties;
 import android.text.TextUtils;
 
+import cyanogenmod.power.PerformanceManager;
+
 public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
         setTileEnabled(context, AmbientDisplayTile.class, isDozeAvailable(context));
         setTileEnabled(context, UsbTetherTile.class, isTetheringSupported(context));
+        setTileEnabled(context, BatterySaverTile.class, hasPowerProfiles(context));
     }
 
     private static void setTileEnabled(Context context, Class cls, boolean enable) {
@@ -54,6 +57,10 @@ public class BootReceiver extends BroadcastReceiver {
         ConnectivityManager connectivityManager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.isTetheringSupported();
+    }
+
+    public static boolean hasPowerProfiles(Context context) {
+        return PerformanceManager.getInstance(context).getNumberOfProfiles() > 0;
     }
 
 }

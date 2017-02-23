@@ -25,6 +25,7 @@
     <string name="volume_panel_label">Volume panel</string>
     <string name="compass_label">Compass</string>
     <string name="usb_tether_label">USB tethering</string>
+    <string name="battery_saver_label">Battery saver</string>
 
     <!-- Caffeine -->
     <string name="caffeine_label">Caffeine</string>
