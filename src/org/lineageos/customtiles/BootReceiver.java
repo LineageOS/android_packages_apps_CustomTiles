@@ -20,6 +20,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.SystemProperties;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         setTileEnabled(context, AmbientDisplayTile.class, isDozeAvailable(context));
+        setTileEnabled(context, UsbTetherTile.class, isTetheringSupported(context));
     }
 
     private static void setTileEnabled(Context context, Class cls, boolean enable) {
@@ -46,6 +48,12 @@ public class BootReceiver extends BroadcastReceiver {
                     com.android.internal.R.string.config_dozeComponent);
         }
         return !TextUtils.isEmpty(name);
+    }
+
+    public static boolean isTetheringSupported(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.isTetheringSupported();
     }
 
 }
