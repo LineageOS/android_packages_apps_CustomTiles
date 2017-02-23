@@ -37,9 +37,6 @@ import cyanogenmod.providers.CMSettings;
 
 public class AdbOverNetworkTile extends TileService {
 
-   private static final Intent SETTINGS_DEVELOPMENT =
-            new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
-
     @Override
     public void onStartListening() {
         super.onStartListening();
