@@ -16,7 +16,11 @@
 package org.lineageos.customtiles;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.graphics.Matrix;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -38,12 +42,13 @@ public class CompassTile extends TileService implements SensorEventListener {
     private Sensor mAccelerationSensor;
     private Sensor mGeomagneticFieldSensor;
 
-    private Float mDegrees;
+    private Float mDegrees = 0f;
+    private float mAngle = 0;
 
     private float[] mAcceleration;
     private float[] mGeomagnetic;
 
-    private ImageView mImage;
+    private Bitmap mImage;
 
     @Override
     public void onStartListening() {
@@ -51,10 +56,20 @@ public class CompassTile extends TileService implements SensorEventListener {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mGeomagneticFieldSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        mImage = new ImageView(this);
+        mImage = getBitmap(getResources().getDrawable(R.drawable.ic_compass_on));
         mListening = true;
         setListeningSensors(mActive && mListening);
         refresh();
+    }
+
+    private Bitmap getBitmap(Drawable drawable) {
+        Bitmap bm = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bm);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        canvas = null;
+        return bm;
     }
 
     @Override
@@ -93,21 +108,32 @@ public class CompassTile extends TileService implements SensorEventListener {
             if (mDegrees != 0) {
                 getQsTile().setLabel(formatValueWithCardinalDirection(mDegrees));
                 float target = 360 - mDegrees;
-                float relative = target - mImage.getRotation();
+                float relative = target - mAngle;
                 if (relative > 180) {
                     relative -= 360;
                 }
+                mAngle = mAngle + relative / 2;
+                setRotation(mAngle + relative / 2);
             } else {
                 getQsTile().setLabel(getString(R.string.quick_settings_compass_init));
-                mImage.setRotation(0);
+                setRotation(0);
             }
+            getQsTile().setIcon(Icon.createWithBitmap(mImage));
         } else {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_compass_off));
             getQsTile().setLabel(getString(R.string.compass_label));
             getQsTile().setState(Tile.STATE_INACTIVE);
-            mImage.setRotation(0);
         }
         getQsTile().updateTile();
+    }
+
+    private void setRotation(float degree) {
+        mImage = getBitmap(getResources().getDrawable(R.drawable.ic_compass_on));
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        int width = mImage.getWidth();
+        int height = mImage.getHeight();
+        mImage = Bitmap.createBitmap(mImage, 0, 0, width, height, matrix, true);
     }
 
     private String formatValueWithCardinalDirection(float degree) {
