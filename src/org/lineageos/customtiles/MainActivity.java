@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
         finish();
 
         Intent intent = getIntent();
+        if (!intent.hasExtra(TileService.EXTRA_COMPONENT)) return;
         Bundle extras = intent.getExtras();
         ComponentName component = extras.getParcelable(TileService.EXTRA_COMPONENT);
 
