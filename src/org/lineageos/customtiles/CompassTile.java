@@ -35,14 +35,12 @@ public class CompassTile extends TileService implements SensorEventListener {
     private final static float ALPHA = 0.97f;
 
     private boolean mActive = false;
-    private boolean mListening = false;
-    private boolean mListeningSensors;
 
     private SensorManager mSensorManager;
     private Sensor mAccelerationSensor;
     private Sensor mGeomagneticFieldSensor;
 
-    private Float mDegrees = 0f;
+    private float mDegrees = 0f;
     private float mAngle = 0;
 
     private float[] mAcceleration;
@@ -53,12 +51,27 @@ public class CompassTile extends TileService implements SensorEventListener {
     @Override
     public void onStartListening() {
         super.onStartListening();
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mGeomagneticFieldSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        mImage = getBitmap(getResources().getDrawable(R.drawable.ic_compass_on));
-        mListening = true;
-        setListeningSensors(mActive && mListening);
+
+        refresh();
+    }
+
+    @Override
+    public void onStopListening() {
+        super.onStopListening();
+
+        setListeningSensors(false);
+        mImage = null;
+    }
+
+    @Override
+    public void onClick() {
+        super.onClick();
+        mActive = !mActive;
+        setListeningSensors(mActive);
         refresh();
     }
 
@@ -72,26 +85,8 @@ public class CompassTile extends TileService implements SensorEventListener {
         return bm;
     }
 
-    @Override
-    public void onClick() {
-        super.onClick();
-        mActive = !mActive;
-        refresh();
-        setListeningSensors(mActive);
-    }
-
-    @Override
-    public void onTileRemoved() {
-        super.onTileRemoved();
-        setListeningSensors(false);
-        mSensorManager = null;
-        mImage = null;
-    }
-
     private void setListeningSensors(boolean listening) {
-        if (listening == mListeningSensors) return;
-        mListeningSensors = listening;
-        if (mListeningSensors) {
+        if (listening) {
             mSensorManager.registerListener(
                     this, mAccelerationSensor, SensorManager.SENSOR_DELAY_GAME);
             mSensorManager.registerListener(
@@ -102,11 +97,9 @@ public class CompassTile extends TileService implements SensorEventListener {
     }
 
     private void refresh() {
-        if (mActive && mListeningSensors) {
-            getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_compass_on));
+        if (mActive) {
             getQsTile().setState(Tile.STATE_ACTIVE);
             if (mDegrees != 0) {
-                getQsTile().setLabel(formatValueWithCardinalDirection(mDegrees));
                 float target = 360 - mDegrees;
                 float relative = target - mAngle;
                 if (relative > 180) {
@@ -114,11 +107,14 @@ public class CompassTile extends TileService implements SensorEventListener {
                 }
                 mAngle = mAngle + relative / 2;
                 setRotation(mAngle + relative / 2);
+
+                getQsTile().setIcon(Icon.createWithBitmap(mImage));
+                getQsTile().setLabel(formatValueWithCardinalDirection(mDegrees));
             } else {
+                getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_compass_on));
                 getQsTile().setLabel(getString(R.string.quick_settings_compass_init));
                 setRotation(0);
             }
-            getQsTile().setIcon(Icon.createWithBitmap(mImage));
         } else {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_compass_off));
             getQsTile().setLabel(getString(R.string.compass_label));
@@ -128,12 +124,12 @@ public class CompassTile extends TileService implements SensorEventListener {
     }
 
     private void setRotation(float degree) {
-        mImage = getBitmap(getResources().getDrawable(R.drawable.ic_compass_on));
+        Bitmap image = getBitmap(getResources().getDrawable(R.drawable.ic_compass_on));
         Matrix matrix = new Matrix();
         matrix.postRotate(degree);
-        int width = mImage.getWidth();
-        int height = mImage.getHeight();
-        mImage = Bitmap.createBitmap(mImage, 0, 0, width, height, matrix, true);
+        int width = image.getWidth();
+        int height = image.getHeight();
+        mImage = Bitmap.createBitmap(image, 0, 0, width, height, matrix, true);
     }
 
     private String formatValueWithCardinalDirection(float degree) {
@@ -167,7 +163,7 @@ public class CompassTile extends TileService implements SensorEventListener {
             values[i] = ALPHA * values[i] + (1 - ALPHA) * event.values[i];
         }
 
-        if (!mActive || !mListeningSensors || mAcceleration == null || mGeomagnetic == null) {
+        if (!mActive || mAcceleration == null || mGeomagnetic == null) {
             // Nothing to do at this moment
             return;
         }
