@@ -84,8 +84,7 @@ public class BatterySaverTile extends TileService {
     private final BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, Intent intent) {
-            final String action = intent.getAction();
-            if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
+            if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                 mPluggedIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
             }
             refresh();
