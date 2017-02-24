@@ -37,8 +37,6 @@ public class VolumePanelTile extends TileService {
 
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
-
-        refresh();
     }
 
     private void refresh() {
