@@ -70,10 +70,13 @@ public class BatterySaverTile extends TileService {
 
     private void refresh() {
         boolean enabled = mPm.isPowerSaveMode();
-        if (mPluggedIn || !enabled) {
+        if (mPluggedIn) {
+            getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_battery_saver_off));
+            getQsTile().setState(Tile.STATE_UNAVAILABLE);
+        } else if (!enabled) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_battery_saver_off));
             getQsTile().setState(Tile.STATE_INACTIVE);
-        } else if (enabled) {
+        } else {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_battery_saver_on));
             getQsTile().setState(Tile.STATE_ACTIVE);
         }
