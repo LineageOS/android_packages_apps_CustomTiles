@@ -42,19 +42,18 @@ public class BatterySaverTile extends TileService {
     }
 
     @Override
+    public void onStopListening() {
+        super.onStopListening();
+        unregisterReceiver();
+    }
+
+    @Override
     public void onClick() {
         super.onClick();
 
         mActive = !mActive;
         mPm.setPowerSaveMode(mActive);
         refresh();
-        if (!mActive) unregisterReceiver();
-    }
-
-    @Override
-    public void onTileRemoved() {
-        super.onTileRemoved();
-        unregisterReceiver();
     }
 
     private void unregisterReceiver() {
