@@ -78,7 +78,6 @@ public class CompassTile extends TileService implements SensorEventListener {
         Canvas canvas = new Canvas(bm);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
-        canvas = null;
         return bm;
     }
 
@@ -177,7 +176,7 @@ public class CompassTile extends TileService implements SensorEventListener {
         SensorManager.getOrientation(R, orientation);
 
         // Convert azimuth to degrees
-        Float newDegree = Float.valueOf((float) Math.toDegrees(orientation[0]));
+        Float newDegree = (float) Math.toDegrees(orientation[0]);
         newDegree = (newDegree + 360) % 360;
 
         mDegrees = newDegree;

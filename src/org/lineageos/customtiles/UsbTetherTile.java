@@ -33,11 +33,10 @@ public class UsbTetherTile extends TileService {
     private ConnectivityManager mConnectivityManager;
 
     private boolean mUsbTethered = false;
-    private boolean mUsbConnected = false;
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
+            boolean mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
             if (mUsbConnected && mConnectivityManager.isTetheringSupported()) {
                 refresh();
             } else {
