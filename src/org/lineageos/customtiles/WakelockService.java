@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.preference.PreferenceManager;
 
 public class WakelockService extends Service {
     private PowerManager.WakeLock wakeLock;

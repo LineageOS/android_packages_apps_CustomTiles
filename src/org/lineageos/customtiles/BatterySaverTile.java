@@ -31,6 +31,15 @@ public class BatterySaverTile extends TileService {
 
     private boolean mActive = false;
     private boolean mPluggedIn;
+    private final BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(final Context context, Intent intent) {
+            if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
+                mPluggedIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
+            }
+            refresh();
+        }
+    };
 
     @Override
     public void onStartListening() {
@@ -82,15 +91,5 @@ public class BatterySaverTile extends TileService {
         }
         getQsTile().updateTile();
     }
-
-    private final BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(final Context context, Intent intent) {
-            if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
-                mPluggedIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
-            }
-            refresh();
-        }
-    };
 
 }

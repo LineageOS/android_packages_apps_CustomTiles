@@ -17,7 +17,6 @@ package org.lineageos.customtiles;
 
 import android.graphics.drawable.Icon;
 import android.provider.Settings;
-import android.provider.Settings.Secure;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 

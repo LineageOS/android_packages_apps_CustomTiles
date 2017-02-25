@@ -17,8 +17,6 @@ package org.lineageos.customtiles;
 
 import android.content.ContentResolver;
 import android.graphics.drawable.Icon;
-import android.provider.Settings;
-import android.provider.Settings.Global;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 

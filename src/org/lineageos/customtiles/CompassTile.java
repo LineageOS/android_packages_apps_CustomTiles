@@ -18,18 +18,15 @@ package org.lineageos.customtiles;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
-import android.graphics.Matrix;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.provider.Settings;
-import android.provider.Settings.Secure;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
-import android.widget.ImageView;
 
 public class CompassTile extends TileService implements SensorEventListener {
     private final static float ALPHA = 0.97f;

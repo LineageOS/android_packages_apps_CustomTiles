@@ -29,18 +29,11 @@ import cyanogenmod.power.PerformanceManager;
 
 public class BootReceiver extends BroadcastReceiver {
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        setTileEnabled(context, AmbientDisplayTile.class, isDozeAvailable(context));
-        setTileEnabled(context, UsbTetherTile.class, isTetheringSupported(context));
-        setTileEnabled(context, BatterySaverTile.class, hasPowerProfiles(context));
-    }
-
     private static void setTileEnabled(Context context, Class cls, boolean enable) {
         final PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(new ComponentName(context, cls),
                 enable ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-                       : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
     }
 
@@ -61,6 +54,13 @@ public class BootReceiver extends BroadcastReceiver {
 
     public static boolean hasPowerProfiles(Context context) {
         return PerformanceManager.getInstance(context).getNumberOfProfiles() > 0;
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        setTileEnabled(context, AmbientDisplayTile.class, isDozeAvailable(context));
+        setTileEnabled(context, UsbTetherTile.class, isTetheringSupported(context));
+        setTileEnabled(context, BatterySaverTile.class, hasPowerProfiles(context));
     }
 
 }

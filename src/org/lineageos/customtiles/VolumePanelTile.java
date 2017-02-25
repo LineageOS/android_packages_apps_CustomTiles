@@ -15,7 +15,6 @@
  */
 package org.lineageos.customtiles;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.media.AudioManager;

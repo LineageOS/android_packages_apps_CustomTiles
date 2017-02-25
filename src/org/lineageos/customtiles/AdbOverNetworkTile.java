@@ -15,9 +15,7 @@
  */
 package org.lineageos.customtiles;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.database.ContentObserver;
 import android.graphics.drawable.Icon;
 import android.net.NetworkUtils;
@@ -27,7 +25,6 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.provider.Settings.Global;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
@@ -36,6 +33,13 @@ import java.net.InetAddress;
 import cyanogenmod.providers.CMSettings;
 
 public class AdbOverNetworkTile extends TileService {
+
+    private ContentObserver mObserver = new ContentObserver(new Handler()) {
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            refresh();
+        }
+    };
 
     @Override
     public void onStartListening() {
@@ -69,13 +73,6 @@ public class AdbOverNetworkTile extends TileService {
 
         refresh();
     }
-
-    private ContentObserver mObserver = new ContentObserver(new Handler()) {
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            refresh();
-        }
-    };
 
     private void refresh() {
         if (isAdbEnabled() && isAdbNetworkEnabled()) {

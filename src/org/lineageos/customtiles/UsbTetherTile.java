@@ -19,7 +19,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.ContentObserver;
 import android.graphics.drawable.Icon;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
@@ -35,6 +34,18 @@ public class UsbTetherTile extends TileService {
 
     private boolean mUsbTethered = false;
     private boolean mUsbConnected = false;
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
+            if (mUsbConnected && mConnectivityManager.isTetheringSupported()) {
+                refresh();
+            } else {
+                mUsbTethered = false;
+            }
+            refresh();
+        }
+    };
 
     @Override
     public void onStartListening() {
@@ -65,19 +76,6 @@ public class UsbTetherTile extends TileService {
 
         refresh();
     }
-
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
-            if (mUsbConnected && mConnectivityManager.isTetheringSupported()) {
-                refresh();
-            } else {
-                mUsbTethered = false;
-            }
-            refresh();
-        }
-    };
 
     private void refresh() {
         String[] tetheredIfaces = mConnectivityManager.getTetheredIfaces();
