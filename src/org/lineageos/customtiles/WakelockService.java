@@ -51,8 +51,9 @@ public class WakelockService extends Service {
 
     @Override
     public void onDestroy() {
-        if (wakeLock.isHeld())
+        if (wakeLock.isHeld()) {
             wakeLock.release();
+        }
 
         screenOffReceiver.destroy();
     }
@@ -67,10 +68,11 @@ public class WakelockService extends Service {
     }
 
     public void toggle() {
-        if (wakeLock.isHeld())
+        if (wakeLock.isHeld()) {
             wakeLock.release();
-        else
+        } else {
             wakeLock.acquire();
+        }
     }
 
     public class Binder extends android.os.Binder {
@@ -89,8 +91,9 @@ public class WakelockService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-                if (wakeLock.isHeld())
+                if (wakeLock.isHeld()) {
                     toggle();
+                }
             }
         }
 

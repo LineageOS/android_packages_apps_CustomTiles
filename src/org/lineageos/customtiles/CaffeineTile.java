@@ -66,8 +66,9 @@ public class CaffeineTile extends TileService {
     public void onClick() {
         super.onClick();
 
-        if (wakelockService != null)
+        if (wakelockService != null) {
             wakelockService.toggle();
+        }
 
         refresh();
     }
