@@ -54,11 +54,15 @@ public class CaffeineTile extends TileService {
 
     @Override
     public void onStopListening() {
+        super.onStopListening();
+
         unbindService(serviceConnection);
     }
 
     @Override
     public void onTileRemoved() {
+        super.onTileRemoved();
+
         stopService(new Intent(getApplicationContext(), WakelockService.class));
     }
 
