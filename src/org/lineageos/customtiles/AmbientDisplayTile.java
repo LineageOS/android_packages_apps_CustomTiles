@@ -35,7 +35,7 @@ public class AmbientDisplayTile extends TileService {
 
         Settings.Secure.putInt(getContentResolver(),
                 Settings.Secure.DOZE_ENABLED,
-                getQsTile().getState() == Tile.STATE_INACTIVE ? 1 : 0);
+                getQsTile().getState() == Tile.STATE_ACTIVE ? 1 : 0);
         refresh();
     }
 
