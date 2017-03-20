@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
         put(".AdbOverNetworkTile", new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
         put(".AmbientDisplayTile", new Intent(Settings.ACTION_DISPLAY_SETTINGS));
         put(".BatterySaverTile", new Intent(Settings.ACTION_BATTERY_SAVER_SETTINGS));
+        put(".HeadsUpTile", new Intent(Settings.ACTION_NOTIFICATION_SETTINGS));
         put(".SyncTile", new Intent(Settings.ACTION_SYNC_SETTINGS));
         put(".UsbTetherTile", new Intent(Settings.ACTION_WIRELESS_SETTINGS));
         put(".VolumePanelTile", new Intent(Settings.ACTION_SOUND_SETTINGS));
