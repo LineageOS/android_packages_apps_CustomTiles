@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Özel Kareler</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Ortam ekranı</string>
+  <string name="network_adb_label">Ağ üzerinden ADB</string>
+  <string name="heads_up_label">Bildirim pencereleri</string>
+  <string name="sync_label">Eşitleme</string>
+  <string name="volume_panel_label">Ses paneli</string>
+  <string name="usb_tether_label">USB tethering</string>
+  <string name="battery_saver_label">Pil tasarrufu</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Kafein</string>
 </resources>

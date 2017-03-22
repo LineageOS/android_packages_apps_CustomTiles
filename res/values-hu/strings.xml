@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Egyéni csempék</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Környezeti kijelző</string>
+  <string name="network_adb_label">ADB hálózaton keresztül</string>
+  <string name="heads_up_label">Lebegő értesítés</string>
+  <string name="sync_label">Szinkronizálás</string>
+  <string name="volume_panel_label">Hangerőszabályzás</string>
+  <string name="usb_tether_label">USB megosztás</string>
+  <string name="battery_saver_label">Akkumulátor kímélő</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Caffeine</string>
 </resources>

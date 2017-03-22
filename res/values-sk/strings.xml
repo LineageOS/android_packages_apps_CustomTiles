@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Vlastná dlaždica</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Ambientne zobrazenie</string>
+  <string name="network_adb_label">ADB cez sieť</string>
+  <string name="heads_up_label">Plávajúce upozornenia</string>
+  <string name="sync_label">Synchronizácia</string>
+  <string name="volume_panel_label">Panel hlasitosti</string>
+  <string name="usb_tether_label">Zdieľanie cez USB</string>
+  <string name="battery_saver_label">Šetrič batérie</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Čas na kávu</string>
 </resources>

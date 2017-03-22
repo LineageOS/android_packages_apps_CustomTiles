@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Custom Tiles</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Afișare ambientală</string>
+  <string name="network_adb_label">ADB prin rețea</string>
+  <string name="heads_up_label">Heads up</string>
+  <string name="sync_label">Sincronizare</string>
+  <string name="volume_panel_label">Panou de volum</string>
+  <string name="usb_tether_label">Tethering prin USB</string>
+  <string name="battery_saver_label">Economizor baterie</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Cofeină</string>
 </resources>

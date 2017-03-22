@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Ploščice po meri</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Okoliški zaslon</string>
+  <string name="network_adb_label">ADB preko omrežja</string>
+  <string name="heads_up_label">Obvestila na zaslonu</string>
+  <string name="sync_label">Sinhronizacija</string>
+  <string name="volume_panel_label">Plošča za glasnost</string>
+  <string name="usb_tether_label">Delj. mob. int. USB</string>
+  <string name="battery_saver_label">Ohranjevalnik baterije</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Kofein</string>
 </resources>

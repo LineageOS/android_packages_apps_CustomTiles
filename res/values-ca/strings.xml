@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Cel·les personalitzades</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Pantalla ambient</string>
+  <string name="network_adb_label">ADB sobre la xarxa</string>
+  <string name="heads_up_label">Notificacions emergents</string>
+  <string name="sync_label">Sinc</string>
+  <string name="volume_panel_label">Panell de volum</string>
+  <string name="usb_tether_label">Ancoratge USB</string>
+  <string name="battery_saver_label">Estalvi de bateria</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Cafeïna</string>
 </resources>

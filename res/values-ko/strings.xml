@@ -17,5 +17,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="network_adb_label">네트워크를 통한 ADB</string>
+  <string name="heads_up_label">헤드업 알림</string>
+  <string name="sync_label">동기화</string>
+  <string name="volume_panel_label">볼륨 패널</string>
+  <string name="usb_tether_label">USB 테더링</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">카페인</string>
 </resources>

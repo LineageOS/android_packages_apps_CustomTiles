@@ -17,5 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="sync_label">Sinkronisasi</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Kafein</string>
 </resources>

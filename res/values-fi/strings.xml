@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Mukautetut tiilet</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Ambient-näyttö</string>
+  <string name="network_adb_label">ADB verkon yli</string>
+  <string name="heads_up_label">Heads up</string>
+  <string name="sync_label">Synkronointi</string>
+  <string name="volume_panel_label">Äänenvoimakkuuspaneeli</string>
+  <string name="usb_tether_label">USB-jakaminen</string>
+  <string name="battery_saver_label">Virransäästö</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Kofeiini</string>
 </resources>

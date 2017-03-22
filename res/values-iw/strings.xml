@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">אריחים מותאמים אישית</string>
   <!-- Labels -->
+  <string name="ambient_display_label">תצוגת התראות עמומה</string>
+  <string name="network_adb_label">ADB דרך הרשת</string>
+  <string name="heads_up_label">התראות קופצות</string>
+  <string name="sync_label">סנכרון</string>
+  <string name="volume_panel_label">לוח עוצמת השמע</string>
+  <string name="usb_tether_label">‏שיתוף אינטרנט דרך USB</string>
+  <string name="battery_saver_label">חיסכון בסוללה</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">קפאין</string>
 </resources>

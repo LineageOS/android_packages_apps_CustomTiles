@@ -17,5 +17,8 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="sync_label">Synk</string>
+  <string name="volume_panel_label">Volympanel</string>
+  <string name="battery_saver_label">Strömsparläge</string>
   <!-- Caffeine -->
 </resources>
