@@ -25,8 +25,12 @@
     <string name="volume_panel_label">Volume panel</string>
     <string name="usb_tether_label">USB tethering</string>
     <string name="battery_saver_label">Battery saver</string>
+    <string name="system_profile_label">System Profile</string>
 
     <!-- Caffeine -->
     <string name="caffeine_label">Caffeine</string>
+
+    <string name="dialog_system_profile_title">Select profile</string>
+    <string name="dialog_system_profile_message">No system profile found</string>
 
 </resources>

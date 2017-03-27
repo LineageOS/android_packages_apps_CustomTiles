@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
         put(".SyncTile", new Intent(Settings.ACTION_SYNC_SETTINGS));
         put(".UsbTetherTile", new Intent(Settings.ACTION_WIRELESS_SETTINGS));
         put(".VolumePanelTile", new Intent(Settings.ACTION_SOUND_SETTINGS));
+        put(".ProfileTile", new Intent("org.cyanogenmod.cmparts.PROFILES_SETTINGS"));
     }};
 
     @Override

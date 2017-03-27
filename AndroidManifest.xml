@@ -140,6 +140,17 @@
             </intent-filter>
         </service>
 
+        <!-- Profiles -->
+        <service
+            android:name=".ProfileTile"
+            android:icon="@drawable/ic_profiles"
+            android:label="@string/system_profile_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <!-- WakeLock Service -->
         <service
             android:name=".WakelockService"
