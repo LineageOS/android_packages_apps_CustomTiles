@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Thêm ô</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Hiển thị môi trường xung quanh</string>
+  <string name="network_adb_label">ADB qua mạng</string>
+  <string name="heads_up_label">Thông báo nổi</string>
+  <string name="sync_label">Đồng bộ hoá</string>
+  <string name="volume_panel_label">Bảng điều khiển âm lượng</string>
+  <string name="usb_tether_label">Chia sẻ kết nối qua USB</string>
+  <string name="battery_saver_label">Tiết kiệm pin</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Chất gây nghiện</string>
 </resources>

@@ -17,6 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="network_adb_label">ADB oor netwerk</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kafeïen</string>
 </resources>

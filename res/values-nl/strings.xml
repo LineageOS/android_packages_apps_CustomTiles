@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Extra tegels</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Omgevingsdisplay</string>
+  <string name="network_adb_label">ADB over netwerk</string>
+  <string name="heads_up_label">Heads-up</string>
+  <string name="sync_label">Synchroniseren</string>
+  <string name="volume_panel_label">Volumepaneel</string>
+  <string name="usb_tether_label">USB-tethering</string>
+  <string name="battery_saver_label">Accubesparing</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Cafeïne</string>
 </resources>

@@ -16,6 +16,15 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Mosaicos extra</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Visualização de ambiente</string>
+  <string name="network_adb_label">ADB através da rede</string>
+  <string name="heads_up_label">Notificações pop-up</string>
+  <string name="sync_label">Sincronização</string>
+  <string name="volume_panel_label">Painel de volume</string>
+  <string name="usb_tether_label">Partilha de internet por USB</string>
+  <string name="battery_saver_label">Poupança de bateria</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Cafeína</string>
 </resources>

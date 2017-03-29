@@ -17,7 +17,12 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="ambient_display_label">Tampilan ambien</string>
+  <string name="network_adb_label">ADB melalui jaringan</string>
   <string name="sync_label">Sinkronisasi</string>
+  <string name="volume_panel_label">Panel volume</string>
+  <string name="usb_tether_label">Tethering USB</string>
+  <string name="battery_saver_label">Penghemat baterai</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kafein</string>
 </resources>

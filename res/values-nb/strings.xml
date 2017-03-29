@@ -16,7 +16,6 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Egendefinerte fliser</string>
   <!-- Labels -->
   <string name="network_adb_label">ADB over nettverk</string>
   <string name="sync_label">Synkronisering</string>

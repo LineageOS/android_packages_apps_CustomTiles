@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Ploščice po meri</string>
+  <string name="app_name">Dodatne ploščice</string>
   <!-- Labels -->
   <string name="ambient_display_label">Okoliški zaslon</string>
   <string name="network_adb_label">ADB preko omrežja</string>

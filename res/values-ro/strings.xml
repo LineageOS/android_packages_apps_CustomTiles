@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Custom Tiles</string>
+  <string name="app_name">Extra tiles</string>
   <!-- Labels -->
   <string name="ambient_display_label">Afișare ambientală</string>
   <string name="network_adb_label">ADB prin rețea</string>

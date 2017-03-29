@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">自定义瓷块</string>
+  <string name="app_name">额外瓷块</string>
   <!-- Labels -->
   <string name="ambient_display_label">环境显示</string>
   <string name="network_adb_label">网络 ADB 调试</string>

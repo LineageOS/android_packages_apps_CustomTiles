@@ -16,9 +16,13 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Zusätzliche Kacheln</string>
   <!-- Labels -->
   <string name="ambient_display_label">Inaktivitätsdisplay</string>
   <string name="network_adb_label">ADB über Netzwerk</string>
+  <string name="heads_up_label">Pop-up-Benachrichtigungen</string>
+  <string name="sync_label">Synchronisation</string>
+  <string name="volume_panel_label">Lautstärkeregler</string>
   <string name="usb_tether_label">USB-Tethering</string>
   <string name="battery_saver_label">Energiesparmodus</string>
   <!-- Caffeine -->
