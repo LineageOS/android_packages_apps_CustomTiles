@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba57610f_8e03f872",
+        "filename": "src/org/lineageos/customtiles/UsbTetherTile.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 13897
+      },
+      "writtenOn": "2017-03-30T16:31:46Z",
+      "side": 1,
+      "message": "Probably overkill, \u0027off\u0027 icon should be enough.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "640924a83a2736654d24182f7096619cebeb9a6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
