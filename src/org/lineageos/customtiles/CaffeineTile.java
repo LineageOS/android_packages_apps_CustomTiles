@@ -32,7 +32,8 @@ public class CaffeineTile extends TileService {
     public void onStartListening() {
         super.onStartListening();
 
-        startService(new Intent(getApplicationContext(), WakelockService.class));
+        startServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
+                UserHandle.CURRENT);
         serviceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
