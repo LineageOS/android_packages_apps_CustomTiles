@@ -90,6 +90,7 @@ public class WakelockService extends Service {
                 if (wakeLock.isHeld()) {
                     wakeLock.release();
                 }
+                stopSelf();
             }
         }
 
