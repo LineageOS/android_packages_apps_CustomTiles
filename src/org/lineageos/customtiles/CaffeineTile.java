@@ -22,9 +22,8 @@ import android.graphics.drawable.Icon;
 import android.os.IBinder;
 import android.os.UserHandle;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
-public class CaffeineTile extends TileService {
+public class CaffeineTile extends CustomTileService {
     private WakelockService wakelockService;
     private ServiceConnection serviceConnection;
 
@@ -38,13 +37,11 @@ public class CaffeineTile extends TileService {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 wakelockService = ((WakelockService.Binder) iBinder).getService();
-                refresh();
             }
 
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
                 wakelockService = null;
-                refresh();
             }
         };
         bindServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
@@ -86,5 +83,10 @@ public class CaffeineTile extends TileService {
             getQsTile().setState(Tile.STATE_INACTIVE);
         }
         getQsTile().updateTile();
+    }
+
+    @Override
+    public int getInitialTileState() {
+        return Tile.STATE_INACTIVE;
     }
 }

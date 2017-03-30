@@ -26,13 +26,12 @@ import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
 import java.net.InetAddress;
 
 import cyanogenmod.providers.CMSettings;
 
-public class AdbOverNetworkTile extends TileService {
+public class AdbOverNetworkTile extends CustomTileService {
 
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
@@ -51,8 +50,6 @@ public class AdbOverNetworkTile extends TileService {
         getContentResolver().registerContentObserver(
                 Settings.Global.getUriFor(Settings.Global.ADB_ENABLED),
                 false, mObserver);
-
-        refresh();
     }
 
     @Override
@@ -108,4 +105,8 @@ public class AdbOverNetworkTile extends TileService {
                 CMSettings.Secure.ADB_PORT, 0) > 0;
     }
 
+    @Override
+    public int getInitialTileState() {
+        return isAdbNetworkEnabled() && isAdbEnabled() ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
 }

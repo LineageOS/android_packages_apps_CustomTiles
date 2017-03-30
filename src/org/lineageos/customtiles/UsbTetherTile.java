@@ -23,10 +23,9 @@ import android.graphics.drawable.Icon;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 import android.util.Log;
 
-public class UsbTetherTile extends TileService {
+public class UsbTetherTile extends CustomTileService {
 
     private static final String TAG = UsbTetherTile.class.getSimpleName();
 
@@ -104,4 +103,8 @@ public class UsbTetherTile extends TileService {
         getQsTile().updateTile();
     }
 
+    @Override
+    public int getInitialTileState() {
+        return Tile.STATE_UNAVAILABLE;
+    }
 }
