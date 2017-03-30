@@ -121,7 +121,7 @@
         <!-- USB Tether -->
         <service
             android:name=".UsbTetherTile"
-            android:icon="@drawable/ic_usb_tether_on"
+            android:icon="@drawable/ic_usb_tether_off"
             android:label="@string/usb_tether_label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
