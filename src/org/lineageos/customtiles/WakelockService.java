@@ -88,7 +88,7 @@ public class WakelockService extends Service {
         public void onReceive(Context context, Intent intent) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
                 if (wakeLock.isHeld()) {
-                    toggle();
+                    wakeLock.release();
                 }
             }
         }
