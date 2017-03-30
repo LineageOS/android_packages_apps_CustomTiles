@@ -41,7 +41,6 @@ public class WakelockService extends Service {
     private PowerManager.WakeLock createWakeLock() {
         PowerManager.WakeLock newWakeLock = ((PowerManager) getSystemService(POWER_SERVICE))
                 .newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "CaffeineTile");
-        newWakeLock.setReferenceCounted(false);
 
         return newWakeLock;
     }
