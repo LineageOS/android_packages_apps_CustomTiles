@@ -29,9 +29,8 @@ public class CaffeineTile extends TileService {
     private ServiceConnection serviceConnection;
 
     @Override
-    public void onStartListening() {
-        super.onStartListening();
-
+    public void onCreate() {
+        super.onCreate();
         startService(new Intent(getApplicationContext(), WakelockService.class));
         serviceConnection = new ServiceConnection() {
             @Override
@@ -46,6 +45,17 @@ public class CaffeineTile extends TileService {
                 refresh();
             }
         };
+    }
+
+    @Override
+    public void onDestroy() {
+        stopService(new Intent(getApplicationContext(), WakelockService.class));
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStartListening() {
+        super.onStartListening();
         bindServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
                 serviceConnection, 0, UserHandle.CURRENT);
     }
@@ -55,13 +65,6 @@ public class CaffeineTile extends TileService {
         super.onStopListening();
 
         unbindService(serviceConnection);
-    }
-
-    @Override
-    public void onTileRemoved() {
-        super.onTileRemoved();
-
-        stopService(new Intent(getApplicationContext(), WakelockService.class));
     }
 
     @Override
