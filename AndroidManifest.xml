@@ -110,7 +110,7 @@
         <!-- Caffeine-->
         <service
             android:name=".CaffeineTile"
-            android:icon="@drawable/ic_caffeine_on"
+            android:icon="@drawable/ic_caffeine_off"
             android:label="@string/caffeine_label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
