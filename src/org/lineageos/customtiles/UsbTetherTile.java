@@ -22,23 +22,33 @@ import android.content.IntentFilter;
 import android.graphics.drawable.Icon;
 import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
-import android.provider.Settings;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
+import android.util.Log;
 
-import cyanogenmod.providers.CMSettings;
+public class UsbTetherTile extends CustomTileService {
 
-public class UsbTetherTile extends TileService {
+    private static final String TAG = UsbTetherTile.class.getSimpleName();
 
     private ConnectivityManager mConnectivityManager;
+    boolean mUsbConnected;
+    boolean mUsbTethered;
 
-    private boolean mUsbTethered = false;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mConnectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        Intent intent = registerReceiver(null, new IntentFilter(UsbManager.ACTION_USB_STATE));
+        mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
+        updateState();
+    }
+
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            boolean mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
+            mUsbConnected = intent.getBooleanExtra(UsbManager.USB_CONNECTED, false);
             if (mUsbConnected && mConnectivityManager.isTetheringSupported()) {
-                refresh();
+                updateState();
             } else {
                 mUsbTethered = false;
             }
@@ -50,33 +60,27 @@ public class UsbTetherTile extends TileService {
     public void onStartListening() {
         super.onStartListening();
 
-        mConnectivityManager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-
         final IntentFilter filter = new IntentFilter();
         filter.addAction(UsbManager.ACTION_USB_STATE);
         registerReceiver(mReceiver, filter);
-
-        refresh();
     }
 
     @Override
     public void onStopListening() {
         super.onStopListening();
-
         unregisterReceiver(mReceiver);
     }
 
     @Override
     public void onClick() {
         super.onClick();
-
-        mConnectivityManager.setUsbTethering(!mUsbTethered);
-
-        refresh();
+        int ret = mConnectivityManager.setUsbTethering(!mUsbTethered);
+        if (ret != ConnectivityManager.TETHER_ERROR_NO_ERROR) {
+            Log.e(TAG, "Could not enable USB tethering: " + ret);
+        }
     }
 
-    private void refresh() {
+    private void updateState() {
         String[] tetheredIfaces = mConnectivityManager.getTetheredIfaces();
         String[] usbRegexs = mConnectivityManager.getTetherableUsbRegexs();
 
@@ -85,28 +89,39 @@ public class UsbTetherTile extends TileService {
             for (String regex : usbRegexs) {
                 if (s.matches(regex)) {
                     mUsbTethered = true;
+                    return;
                 }
             }
         }
+    }
 
-        if (mUsbTethered) {
-            getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_usb_tether_on));
-            getQsTile().setState(Tile.STATE_ACTIVE);
-        } else {
+    private void refresh() {
+        if (!mUsbConnected) {
+            getQsTile().setState(Tile.STATE_UNAVAILABLE);
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_usb_tether_off));
+        } else if (mUsbTethered) {
+            getQsTile().setState(Tile.STATE_ACTIVE);
+            getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_usb_tether_on));
+        } else {
             getQsTile().setState(Tile.STATE_INACTIVE);
+            getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_usb_tether_off));
         }
         getQsTile().updateTile();
     }
 
-    private boolean isAdbEnabled() {
-        return Settings.Global.getInt(getContentResolver(),
-                Settings.Global.ADB_ENABLED, 0) > 0;
+    @Override
+    public int getInitialTileState() {
+        if (mUsbTethered) {
+            return Tile.STATE_ACTIVE;
+        } else if (mUsbConnected) {
+            return Tile.STATE_INACTIVE;
+        } else {
+            return Tile.STATE_UNAVAILABLE;
+        }
     }
 
-    private boolean isAdbNetworkEnabled() {
-        return CMSettings.Secure.getInt(getContentResolver(),
-                CMSettings.Secure.ADB_PORT, 0) > 0;
+    @Override
+    public Icon getInitialIcon() {
+        return mUsbTethered ? Icon.createWithResource(this, R.drawable.ic_usb_tether_off) : null;
     }
-
 }

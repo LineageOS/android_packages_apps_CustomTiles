@@ -20,31 +20,53 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.preference.PreferenceManager;
 
-public class WakelockService extends Service {
+public class CaffeineTileService extends Service {
+
     private PowerManager.WakeLock mWakeLock;
 
     private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                sharedPreferences.edit().putBoolean(CaffeineTile.CAFFEINE_PREF, false).apply();
                 if (mWakeLock.isHeld()) {
                     mWakeLock.release();
                 }
-                stopSelf();
             }
         }
     };
 
     @Override
     public void onCreate() {
-        mWakeLock = ((PowerManager) getSystemService(POWER_SERVICE))
-                .newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "CaffeineTile");
+        super.onCreate();
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean enabled = sharedPreferences.getBoolean(CaffeineTile.CAFFEINE_PREF, false);
+        if (!enabled) {
+            stopSelf();
+        }
+        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        mWakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "CaffeineTile");
+        mWakeLock.acquire();
 
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         registerReceiver(mScreenStateReceiver, screenStateFilter);
+    }
+
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(mScreenStateReceiver);
+        if (mWakeLock.isHeld()) {
+            mWakeLock.release();
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -54,33 +76,6 @@ public class WakelockService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return new Binder();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (mWakeLock.isHeld()) {
-            mWakeLock.release();
-        }
-
-        unregisterReceiver(mScreenStateReceiver);
-    }
-
-    public boolean isActive() {
-        return mWakeLock.isHeld();
-    }
-
-    public void toggle() {
-        if (mWakeLock.isHeld()) {
-            mWakeLock.release();
-        } else {
-            mWakeLock.acquire();
-        }
-    }
-
-    public class Binder extends android.os.Binder {
-        public WakelockService getService() {
-            return WakelockService.this;
-        }
+        return null;
     }
 }

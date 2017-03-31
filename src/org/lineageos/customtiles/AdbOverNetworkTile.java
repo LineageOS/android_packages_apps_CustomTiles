@@ -16,50 +16,37 @@
 package org.lineageos.customtiles;
 
 import android.content.Context;
-import android.database.ContentObserver;
 import android.graphics.drawable.Icon;
 import android.net.NetworkUtils;
-import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
 import java.net.InetAddress;
 
 import cyanogenmod.providers.CMSettings;
 
-public class AdbOverNetworkTile extends TileService {
+public class AdbOverNetworkTile extends CustomTileService {
 
-    private ContentObserver mObserver = new ContentObserver(new Handler()) {
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            refresh();
-        }
-    };
+    private boolean mEnabled;
+    private String mLabel;
+
+    private WifiManager mWifiManager;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mLabel = getString(R.string.network_adb_label);
+        mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+    }
 
     @Override
     public void onStartListening() {
         super.onStartListening();
 
-        getContentResolver().registerContentObserver(
-                CMSettings.Secure.getUriFor(CMSettings.Secure.ADB_PORT),
-                false, mObserver);
-        getContentResolver().registerContentObserver(
-                Settings.Global.getUriFor(Settings.Global.ADB_ENABLED),
-                false, mObserver);
-
         refresh();
-    }
-
-    @Override
-    public void onStopListening() {
-        super.onStopListening();
-
-        getContentResolver().unregisterContentObserver(mObserver);
     }
 
     @Override
@@ -75,37 +62,53 @@ public class AdbOverNetworkTile extends TileService {
     }
 
     private void refresh() {
-        if (isAdbEnabled() && isAdbNetworkEnabled()) {
-            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        boolean enabled = isAdbNetworkEnabled();
+        String label;
 
+        if (enabled) {
+            WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
             if (wifiInfo != null) {
-                // if wifiInfo is not null, set the label to "hostAddress"
                 InetAddress address = NetworkUtils.intToInetAddress(wifiInfo.getIpAddress());
-                getQsTile().setLabel(address.getHostAddress());
+                label = address.getHostAddress();
             } else {
-                // if wifiInfo is null, set the label without host address
-                getQsTile().setLabel(getString(R.string.network_adb_label));
+                label = getString(R.string.network_adb_label);
             }
+        } else {
+            label = getString(R.string.network_adb_label);
+        }
 
+        if (enabled == mEnabled && label.equals(mLabel)) {
+            return;
+        }
+
+        if (enabled) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_network_adb_on));
             getQsTile().setState(Tile.STATE_ACTIVE);
+            getQsTile().setLabel(label);
         } else {
-            getQsTile().setLabel(this.getString(R.string.network_adb_label));
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_network_adb_off));
             getQsTile().setState(Tile.STATE_INACTIVE);
+            getQsTile().setLabel(label);
         }
         getQsTile().updateTile();
-    }
 
-    private boolean isAdbEnabled() {
-        return Settings.Global.getInt(getContentResolver(),
-                Settings.Global.ADB_ENABLED, 0) > 0;
+        mEnabled = enabled;
+        mLabel = label;
     }
 
     private boolean isAdbNetworkEnabled() {
-        return CMSettings.Secure.getInt(getContentResolver(),
-                CMSettings.Secure.ADB_PORT, 0) > 0;
+        return Settings.Global.getInt(getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0 &&
+                CMSettings.Secure.getInt(getContentResolver(), CMSettings.Secure.ADB_PORT, 0) > 0;
     }
 
+    @Override
+    public int getInitialTileState() {
+        return isAdbNetworkEnabled() ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
+
+    @Override
+    public Icon getInitialIcon() {
+        return isAdbNetworkEnabled() ?
+                Icon.createWithResource(this, R.drawable.ic_network_adb_on) : null;
+    }
 }
