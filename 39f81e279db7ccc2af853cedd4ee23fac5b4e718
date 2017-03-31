@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba57610f_64f8e37c",
+        "filename": "src/org/lineageos/customtiles/UsbTetherTile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-03-31T21:40:23Z",
+      "side": 1,
+      "message": "Same code done 3 times (only with different parameters). Worth to create a method (something like refreshTile(state, icon) ) ?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 9
+      },
+      "revId": "39f81e279db7ccc2af853cedd4ee23fac5b4e718",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
