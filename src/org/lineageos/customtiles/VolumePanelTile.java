@@ -16,19 +16,10 @@
 package org.lineageos.customtiles;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
 import android.media.AudioManager;
-import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
 public class VolumePanelTile extends TileService {
-
-    @Override
-    public void onStartListening() {
-        super.onStartListening();
-
-        refresh();
-    }
 
     @Override
     public void onClick() {
@@ -36,12 +27,6 @@ public class VolumePanelTile extends TileService {
 
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
-    }
-
-    private void refresh() {
-        getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_volume_panel));
-        getQsTile().setState(Tile.STATE_ACTIVE);
-        getQsTile().updateTile();
     }
 
 }
