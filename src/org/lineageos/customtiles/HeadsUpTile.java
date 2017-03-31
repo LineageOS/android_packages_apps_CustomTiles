@@ -18,9 +18,16 @@ package org.lineageos.customtiles;
 import android.graphics.drawable.Icon;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
-public class HeadsUpTile extends TileService {
+public class HeadsUpTile extends CustomTileService {
+
+    private boolean mEnabled;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mEnabled = isHeadsUpEnabled();
+    }
 
     @Override
     public void onStartListening() {
@@ -39,10 +46,17 @@ public class HeadsUpTile extends TileService {
         refresh();
     }
 
+    private boolean isHeadsUpEnabled() {
+        return Settings.Global.HEADS_UP_OFF != Settings.Global.getInt(getContentResolver(),
+                Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED, Settings.Global.HEADS_UP_OFF);
+    }
+
     private void refresh() {
-        boolean enabled = Settings.Global.HEADS_UP_OFF != Settings.Global.getInt(
-                getContentResolver(), Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED,
-                Settings.Global.HEADS_UP_OFF);
+        boolean enabled = isHeadsUpEnabled();
+        if (mEnabled == enabled) {
+            return;
+        }
+        mEnabled = enabled;
         if (enabled) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_heads_up_on));
             getQsTile().setState(Tile.STATE_ACTIVE);
@@ -53,4 +67,13 @@ public class HeadsUpTile extends TileService {
         getQsTile().updateTile();
     }
 
+    @Override
+    public int getInitialTileState() {
+        return mEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
+
+    @Override
+    public Icon getInitialIcon() {
+        return mEnabled ? null : Icon.createWithResource(this, R.drawable.ic_heads_up_off);
+    }
 }

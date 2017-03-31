@@ -23,46 +23,64 @@ import android.graphics.drawable.Icon;
 import android.os.BatteryManager;
 import android.os.PowerManager;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
+import android.util.Log;
 
-public class BatterySaverTile extends TileService {
+public class BatterySaverTile extends CustomTileService {
 
+    private static final String TAG = BatterySaverTile.class.getSimpleName();
+
+    private boolean mEnabled;
+    private boolean mPluggedIn;
     private PowerManager mPm;
 
-    private boolean mActive = false;
-    private boolean mPluggedIn;
     private final BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, Intent intent) {
             if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                 mPluggedIn = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0;
+                refresh(true);
             }
-            refresh();
         }
     };
+
+    @Override
+    public void onCreate() {
+        mPm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        mEnabled = mPm.isPowerSaveMode();
+        mPluggedIn = isPluggedIn();
+    }
+
+    private boolean isPluggedIn() {
+        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = registerReceiver(null, ifilter);
+        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        return status == BatteryManager.BATTERY_STATUS_CHARGING;
+    }
 
     @Override
     public void onStartListening() {
         super.onStartListening();
 
-        mPm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         registerReceiver();
-        refresh();
+        refresh(false);
     }
 
     @Override
     public void onStopListening() {
-        super.onStopListening();
         unregisterReceiver();
+        super.onStopListening();
     }
 
     @Override
     public void onClick() {
         super.onClick();
 
-        mActive = !mActive;
-        mPm.setPowerSaveMode(mActive);
-        refresh();
+        boolean ret = mPm.setPowerSaveMode(!mEnabled);
+        if (!ret) {
+            Log.e(TAG, "Could not set power mode");
+            return;
+        }
+        refresh(false);
     }
 
     private void unregisterReceiver() {
@@ -77,8 +95,12 @@ public class BatterySaverTile extends TileService {
         registerReceiver(mBatteryReceiver, filter);
     }
 
-    private void refresh() {
+    private void refresh(boolean force) {
         boolean enabled = mPm.isPowerSaveMode();
+        if (!force && enabled == mEnabled) {
+            return;
+        }
+        mEnabled = enabled;
         if (mPluggedIn) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_battery_saver_off));
             getQsTile().setState(Tile.STATE_UNAVAILABLE);
@@ -92,4 +114,13 @@ public class BatterySaverTile extends TileService {
         getQsTile().updateTile();
     }
 
+    @Override
+    public int getInitialTileState() {
+        return mEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
+
+    @Override
+    public Icon getInitialIcon() {
+        return mEnabled ? Icon.createWithResource(this, R.drawable.ic_battery_saver_on) : null;
+    }
 }
