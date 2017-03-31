@@ -15,70 +15,56 @@
  */
 package org.lineageos.customtiles;
 
-import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Icon;
-import android.os.IBinder;
 import android.os.UserHandle;
+import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
-public class CaffeineTile extends TileService {
-    private WakelockService wakelockService;
-    private ServiceConnection serviceConnection;
+public class CaffeineTile extends CustomTileService {
 
-    @Override
-    public void onStartListening() {
-        super.onStartListening();
+    public static final String CAFFEINE_PREF = "caffeine_pref";
 
-        startServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
-                UserHandle.CURRENT);
-        serviceConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                wakelockService = ((WakelockService.Binder) iBinder).getService();
-                refresh();
-            }
+    private boolean mEnabled = false;
 
-            @Override
-            public void onServiceDisconnected(ComponentName componentName) {
-                wakelockService = null;
-                refresh();
-            }
-        };
-        bindServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
-                serviceConnection, 0, UserHandle.CURRENT);
-    }
-
-    @Override
-    public void onStopListening() {
-        super.onStopListening();
-
-        unbindService(serviceConnection);
-    }
-
-    @Override
-    public void onTileRemoved() {
-        super.onTileRemoved();
-
-        stopService(new Intent(getApplicationContext(), WakelockService.class));
-    }
+    private SharedPreferences mSharedPreferences;
 
     @Override
     public void onClick() {
         super.onClick();
 
-        if (wakelockService != null) {
-            wakelockService.toggle();
+        mSharedPreferences.edit().putBoolean(CAFFEINE_PREF, !mEnabled).apply();
+        Context context = getApplicationContext();
+        if (!mEnabled) {
+            startServiceAsUser(new Intent(context, CaffeineTileService.class), UserHandle.CURRENT);
+        } else {
+            stopServiceAsUser(new Intent(context, CaffeineTileService.class), UserHandle.CURRENT);
         }
-
         refresh();
     }
 
+    @Override
+    public void onStartListening() {
+        super.onStartListening();
+        refresh();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        mEnabled = mSharedPreferences.getBoolean(CAFFEINE_PREF, false);
+    }
+
     private void refresh() {
-        getQsTile().setLabel(getString(R.string.caffeine_label));
-        if (wakelockService != null && wakelockService.isActive()) {
+        boolean enabled = mSharedPreferences.getBoolean(CAFFEINE_PREF, false);
+        if (mEnabled == enabled) {
+            return;
+        }
+        mEnabled = enabled;
+        if (enabled) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_caffeine_on));
             getQsTile().setState(Tile.STATE_ACTIVE);
         } else {
@@ -86,5 +72,15 @@ public class CaffeineTile extends TileService {
             getQsTile().setState(Tile.STATE_INACTIVE);
         }
         getQsTile().updateTile();
+    }
+
+    @Override
+    public int getInitialTileState() {
+        return mEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
+
+    @Override
+    public Icon getInitialIcon() {
+        return mEnabled ? Icon.createWithResource(this, R.drawable.ic_caffeine_on) : null;
     }
 }

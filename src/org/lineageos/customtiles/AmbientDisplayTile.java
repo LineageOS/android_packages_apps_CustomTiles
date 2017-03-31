@@ -18,14 +18,20 @@ package org.lineageos.customtiles;
 import android.graphics.drawable.Icon;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
-public class AmbientDisplayTile extends TileService {
+public class AmbientDisplayTile extends CustomTileService {
+
+    private boolean mEnabled;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mEnabled = isDozeEnabled();
+    }
 
     @Override
     public void onStartListening() {
         super.onStartListening();
-
         refresh();
     }
 
@@ -39,9 +45,17 @@ public class AmbientDisplayTile extends TileService {
         refresh();
     }
 
-    private void refresh() {
-        boolean enabled = Settings.Secure.getInt(getContentResolver(),
+    private boolean isDozeEnabled() {
+        return Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.DOZE_ENABLED, 1) != 0;
+    }
+
+    private void refresh() {
+        boolean enabled = isDozeEnabled();
+        if (mEnabled == enabled) {
+            return;
+        }
+        mEnabled = enabled;
         if (enabled) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_ambient_display_on));
             getQsTile().setState(Tile.STATE_ACTIVE);
@@ -52,4 +66,13 @@ public class AmbientDisplayTile extends TileService {
         getQsTile().updateTile();
     }
 
+    @Override
+    public int getInitialTileState() {
+        return mEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
+
+    @Override
+    public Icon getInitialIcon() {
+        return mEnabled ? null : Icon.createWithResource(this, R.drawable.ic_ambient_display_off);
+    }
 }

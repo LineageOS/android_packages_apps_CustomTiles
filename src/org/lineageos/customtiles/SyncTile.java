@@ -20,8 +20,15 @@ import android.graphics.drawable.Icon;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-public class SyncTile extends TileService {
+public class SyncTile extends CustomTileService {
 
+    private boolean mEnabled;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mEnabled = ContentResolver.getMasterSyncAutomatically();
+    }
     @Override
     public void onStartListening() {
         super.onStartListening();
@@ -33,12 +40,16 @@ public class SyncTile extends TileService {
     public void onClick() {
         super.onClick();
 
-        ContentResolver.setMasterSyncAutomatically(getQsTile().getState() == Tile.STATE_INACTIVE);
+        ContentResolver.setMasterSyncAutomatically(!mEnabled);
         refresh();
     }
 
     private void refresh() {
         boolean enabled = ContentResolver.getMasterSyncAutomatically();
+        if (mEnabled == enabled) {
+            return;
+        }
+        mEnabled = enabled;
         if (enabled) {
             getQsTile().setIcon(Icon.createWithResource(this, R.drawable.ic_sync_on));
             getQsTile().setState(Tile.STATE_ACTIVE);
@@ -49,4 +60,14 @@ public class SyncTile extends TileService {
         getQsTile().updateTile();
     }
 
+    @Override
+    public int getInitialTileState() {
+        return mEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+    }
+
+    @Override
+    public Icon getInitialIcon() {
+        return mEnabled ? Icon.createWithResource(this, R.drawable.ic_sync_on)
+                : Icon.createWithResource(this, R.drawable.ic_sync_off);
+    }
 }

@@ -117,11 +117,14 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".CaffeineTileService"
+            android:label="CaffeinTileService" />
 
         <!-- USB Tether -->
         <service
             android:name=".UsbTetherTile"
-            android:icon="@drawable/ic_usb_tether_on"
+            android:icon="@drawable/ic_usb_tether_off"
             android:label="@string/usb_tether_label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -132,19 +135,13 @@
         <!-- Battery saver -->
         <service
             android:name=".BatterySaverTile"
-            android:icon="@drawable/ic_battery_saver_on"
+            android:icon="@drawable/ic_battery_saver_off"
             android:label="@string/battery_saver_label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-
-        <!-- WakeLock Service -->
-        <service
-            android:name=".WakelockService"
-            android:enabled="true"
-            android:exported="false" />
 
     </application>
 </manifest>
