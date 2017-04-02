@@ -22,6 +22,30 @@
       "revId": "8b84742130b10451c8bb37114dde223817e129ee",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba57610f_1aa73e51",
+        "filename": "src/org/lineageos/customtiles/UsbTetherTile.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 13897
+      },
+      "writtenOn": "2017-04-02T14:39:54Z",
+      "side": 1,
+      "message": "I could probably add a method to the base class and use that for every tile. I kept it as is for now for simplicity, I simply rebased this on top of the current master.",
+      "parentUuid": "ba57610f_bff38409",
+      "range": {
+        "startLine": 101,
+        "startChar": 7,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "8b84742130b10451c8bb37114dde223817e129ee",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
