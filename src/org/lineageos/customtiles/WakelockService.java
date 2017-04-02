@@ -24,8 +24,19 @@ import android.os.IBinder;
 import android.os.PowerManager;
 
 public class WakelockService extends Service {
-    private PowerManager.WakeLock wakeLock;
-    private ScreenOffReceiver screenOffReceiver = new ScreenOffReceiver();
+    private PowerManager.WakeLock mWakeLock;
+
+    private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                if (mWakeLock.isHeld()) {
+                    mWakeLock.release();
+                }
+                stopSelf();
+            }
+        }
+    };
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -34,24 +45,20 @@ public class WakelockService extends Service {
 
     @Override
     public void onCreate() {
-        wakeLock = createWakeLock();
-        screenOffReceiver.init();
-    }
-
-    private PowerManager.WakeLock createWakeLock() {
-        PowerManager.WakeLock newWakeLock = ((PowerManager) getSystemService(POWER_SERVICE))
+        mWakeLock = ((PowerManager) getSystemService(POWER_SERVICE))
                 .newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "CaffeineTile");
 
-        return newWakeLock;
+        IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(mScreenStateReceiver, screenStateFilter);
     }
 
     @Override
     public void onDestroy() {
-        if (wakeLock.isHeld()) {
-            wakeLock.release();
+        if (mWakeLock.isHeld()) {
+            mWakeLock.release();
         }
 
-        screenOffReceiver.destroy();
+        unregisterReceiver(mScreenStateReceiver);
     }
 
     @Override
@@ -60,42 +67,20 @@ public class WakelockService extends Service {
     }
 
     public boolean isActive() {
-        return wakeLock.isHeld();
+        return mWakeLock.isHeld();
     }
 
     public void toggle() {
-        if (wakeLock.isHeld()) {
-            wakeLock.release();
+        if (mWakeLock.isHeld()) {
+            mWakeLock.release();
         } else {
-            wakeLock.acquire();
+            mWakeLock.acquire();
         }
     }
 
     public class Binder extends android.os.Binder {
         public WakelockService getService() {
             return WakelockService.this;
-        }
-    }
-
-    private class ScreenOffReceiver extends BroadcastReceiver {
-        public void init() {
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_SCREEN_OFF);
-            getApplicationContext().registerReceiver(this, filter);
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-                if (wakeLock.isHeld()) {
-                    wakeLock.release();
-                }
-                stopSelf();
-            }
-        }
-
-        public void destroy() {
-            getApplicationContext().unregisterReceiver(this);
         }
     }
 }
