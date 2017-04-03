@@ -26,6 +26,9 @@
     <string name="usb_tether_label">USB tethering</string>
     <string name="battery_saver_label">Battery saver</string>
 
+    <string name="screen_timeout_label">Screen timeout: <xliff:g id="timeout" example="30 seconds">%s</xliff:g>.</string>
+    <string name="screen_timeout_dialog_label">Screen timeout intervals</string>
+
     <!-- Caffeine -->
     <string name="caffeine_label">Caffeine</string>
 

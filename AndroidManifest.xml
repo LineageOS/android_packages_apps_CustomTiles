@@ -140,6 +140,27 @@
             </intent-filter>
         </service>
 
+        <!-- Screen timeout -->
+        <service
+            android:name=".ScreenTimeoutTile"
+            android:icon="@drawable/ic_qs_screen_timeout_vector"
+            android:label="@string/screen_timeout_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".ScreenTimeoutTile$ConfigDialog"
+            android:label="@string/screen_timeout_dialog_label"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog">
+            <intent-filter>
+                <action android:name="org.lineageos.customtiles.SCREEN_TIMEOUT_CONFIG" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- WakeLock Service -->
         <service
             android:name=".WakelockService"
