@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a5c5d37_6ddd9114",
+        "filename": "src/org/lineageos/customtiles/AdbOverNetworkTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 40
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0decd5c6",
+        "filename": "src/org/lineageos/customtiles/AmbientDisplayTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 9
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_8dd7a5ed",
+        "filename": "src/org/lineageos/customtiles/BatterySaverTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 52
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_6d04717e",
+        "filename": "src/org/lineageos/customtiles/CaffeineTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0d03b574",
+        "filename": "src/org/lineageos/customtiles/CaffeineTileService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Use FLAG_KEEP_SCREEN_ON instead as FULL_WAKE_LOCK is deprecated?",
+      "range": {
+        "startLine": 56,
+        "startChar": 58,
+        "endLine": 56,
+        "endChar": 72
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_4dbbedc4",
+        "filename": "src/org/lineageos/customtiles/CustomTileService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Is there any scenario where we want to have the default values? I suggest changing these methods to abstract to force the implementation.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_0db5f5cc",
+        "filename": "src/org/lineageos/customtiles/CustomTileService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "If conditions can be merged. \n\nif(state \u003d\u003d Tile.STATE_INACTIVE || state \u003d\u003d Tile.STATE_UNAVAILABLE) {\n   tile.setState(state);\n   updateNeeded \u003d true;\n}",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 45
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_edf7418b",
+        "filename": "src/org/lineageos/customtiles/HeadsUpTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_cdf47d89",
+        "filename": "src/org/lineageos/customtiles/SyncTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5c5d37_adf14997",
+        "filename": "src/org/lineageos/customtiles/UsbTetherTile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-04T21:50:47Z",
+      "side": 1,
+      "message": "Create a method on the super class to update the Tile icon, state and label.",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 9
+      },
+      "revId": "edadc4371039cf0ef9ffd2d47a87d1da028f334d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
