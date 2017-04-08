@@ -25,6 +25,11 @@
     <string name="volume_panel_label">Volume panel</string>
     <string name="usb_tether_label">USB tethering</string>
     <string name="battery_saver_label">Battery saver</string>
+    <string name="location_mode_label">Location Mode</string>
+    <string name="location_mode_ha_label">High accuracy</string>
+    <string name="location_mode_bs_label">Battery Saving</string>
+    <string name="location_mode_do_label">Device Only</string>
+    <string name="location_mode_off_label">Off</string>
 
     <!-- Caffeine -->
     <string name="caffeine_label">Caffeine</string>

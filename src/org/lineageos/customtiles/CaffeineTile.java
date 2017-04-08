@@ -55,11 +55,6 @@ public class CaffeineTile extends TileService {
     public void onStopListening() {
         super.onStopListening();
 
-        if (wakelockService != null && !wakelockService.isActive()) {
-            stopServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
-                    UserHandle.CURRENT);
-        }
-
         unbindService(serviceConnection);
     }
 
@@ -67,8 +62,7 @@ public class CaffeineTile extends TileService {
     public void onTileRemoved() {
         super.onTileRemoved();
 
-        stopServiceAsUser(new Intent(getApplicationContext(), WakelockService.class),
-                UserHandle.CURRENT);
+        stopService(new Intent(getApplicationContext(), WakelockService.class));
     }
 
     @Override
