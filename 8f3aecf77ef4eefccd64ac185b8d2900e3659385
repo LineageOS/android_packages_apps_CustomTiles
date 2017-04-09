@@ -70,6 +70,30 @@
       "revId": "8f3aecf77ef4eefccd64ac185b8d2900e3659385",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_db69d726",
+        "filename": "src/org/lineageos/customtiles/LocationModeTile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 13897
+      },
+      "writtenOn": "2017-04-09T21:19:49Z",
+      "side": 1,
+      "message": "Sorry, I should have been more clear. The location setting is always accessible only after unlocking the screen.\n\nI think this is done for things such as Android Device Manager, but this is just a guess. You can see that the same is done for the inbuilt tile and that was clearly intentional: https://android.googlesource.com/platform/frameworks/base/+/657c62c31ecdade22f67f13102c2fb19765cbe13%5E!/ (although it doesn\u0027t say why is that).\n\nThis is why I said \"should probably\", I\u0027m not sure of that, it was just my opinion.",
+      "parentUuid": "7a51691d_1b888fe6",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "8f3aecf77ef4eefccd64ac185b8d2900e3659385",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
