@@ -94,6 +94,30 @@
       "revId": "8f3aecf77ef4eefccd64ac185b8d2900e3659385",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_5bccc735",
+        "filename": "src/org/lineageos/customtiles/LocationModeTile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 17444
+      },
+      "writtenOn": "2017-04-09T21:38:40Z",
+      "side": 1,
+      "message": "Thank you very much for the explanation. \n\nI checked the inbuilt Tile implementation and you\u0027re right it\u0027s done that way. Not sure why though. I tested my code and it everything seemed to be working file. Probably i\u0027ll leave it as it is for now and change it if someone else also comments on this.",
+      "parentUuid": "7a51691d_db69d726",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "8f3aecf77ef4eefccd64ac185b8d2900e3659385",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
