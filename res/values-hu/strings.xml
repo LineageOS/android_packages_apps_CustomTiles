@@ -16,6 +16,7 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Extra csempék</string>
   <!-- Labels -->
   <string name="ambient_display_label">Környezeti kijelző</string>
   <string name="network_adb_label">ADB hálózaton keresztül</string>

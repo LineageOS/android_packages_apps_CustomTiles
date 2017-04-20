@@ -17,6 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="usb_tether_label">Tethering USB</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kofeina</string>
 </resources>

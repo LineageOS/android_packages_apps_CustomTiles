@@ -16,6 +16,7 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Paneles extra</string>
   <!-- Labels -->
   <string name="ambient_display_label">Pantalla ambiente</string>
   <string name="network_adb_label">ADB sobre red</string>

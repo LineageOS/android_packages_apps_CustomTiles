@@ -16,9 +16,11 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Ikon ekstra</string>
   <!-- Labels -->
   <string name="ambient_display_label">Tampilan ambien</string>
   <string name="network_adb_label">ADB melalui jaringan</string>
+  <string name="heads_up_label">Heads up</string>
   <string name="sync_label">Sinkronisasi</string>
   <string name="volume_panel_label">Panel volume</string>
   <string name="usb_tether_label">Tethering USB</string>
