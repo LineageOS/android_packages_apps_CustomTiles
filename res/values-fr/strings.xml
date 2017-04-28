@@ -16,6 +16,7 @@
     limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Tuiles supplémentaires</string>
   <!-- Labels -->
   <string name="ambient_display_label">Affichage ambiant</string>
   <string name="network_adb_label">ADB par réseau</string>

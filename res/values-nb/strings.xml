@@ -18,6 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Ekstra fliser</string>
   <!-- Labels -->
+  <string name="ambient_display_label">Omgivelsesskjerm</string>
   <string name="network_adb_label">ADB over nettverk</string>
   <string name="heads_up_label">Flytende varsler</string>
   <string name="sync_label">Synkronisering</string>
