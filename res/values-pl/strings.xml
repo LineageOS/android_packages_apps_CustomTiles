@@ -17,7 +17,13 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels -->
+  <string name="ambient_display_label">Aktywny wyświetlacz</string>
+  <string name="network_adb_label">ADB przez sieć</string>
+  <string name="heads_up_label">Wyskakujące powiadomienia</string>
+  <string name="sync_label">Synchronizacja</string>
+  <string name="volume_panel_label">Panel głośności</string>
   <string name="usb_tether_label">Tethering USB</string>
+  <string name="battery_saver_label">Oszczędzanie baterii</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kofeina</string>
 </resources>
