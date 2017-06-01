@@ -24,7 +24,6 @@
   <string name="sync_label">同步處理</string>
   <string name="volume_panel_label">音量面板</string>
   <string name="usb_tether_label">USB 網路共享</string>
-  <string name="battery_saver_label">省電模式</string>
   <!-- Caffeine -->
   <string name="caffeine_label">暫停休眠</string>
 </resources>

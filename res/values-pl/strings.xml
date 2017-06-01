@@ -23,7 +23,6 @@
   <string name="sync_label">Synchronizacja</string>
   <string name="volume_panel_label">Panel głośności</string>
   <string name="usb_tether_label">Tethering USB</string>
-  <string name="battery_saver_label">Oszczędzanie baterii</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kofeina</string>
 </resources>

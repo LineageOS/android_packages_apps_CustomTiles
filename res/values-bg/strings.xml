@@ -24,7 +24,6 @@
   <string name="sync_label">Синхронизация</string>
   <string name="volume_panel_label">Звуков панел</string>
   <string name="usb_tether_label">Тетъринг през USB</string>
-  <string name="battery_saver_label">Пестене на батерия</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Кофеин</string>
 </resources>

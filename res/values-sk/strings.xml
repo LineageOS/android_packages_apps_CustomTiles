@@ -24,7 +24,6 @@
   <string name="sync_label">Synchronizácia</string>
   <string name="volume_panel_label">Panel hlasitosti</string>
   <string name="usb_tether_label">Zdieľanie cez USB</string>
-  <string name="battery_saver_label">Šetrič batérie</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Čas na kávu</string>
 </resources>

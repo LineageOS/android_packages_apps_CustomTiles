@@ -60,7 +60,6 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         setTileEnabled(context, AmbientDisplayTile.class, isDozeAvailable(context));
         setTileEnabled(context, UsbTetherTile.class, isTetheringSupported(context));
-        setTileEnabled(context, BatterySaverTile.class, hasPowerProfiles(context));
     }
 
 }

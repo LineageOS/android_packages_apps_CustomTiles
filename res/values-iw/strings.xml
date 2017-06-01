@@ -24,7 +24,6 @@
   <string name="sync_label">סנכרון</string>
   <string name="volume_panel_label">לוח עוצמת השמע</string>
   <string name="usb_tether_label">‏שיתוף אינטרנט דרך USB</string>
-  <string name="battery_saver_label">חיסכון בסוללה</string>
   <!-- Caffeine -->
   <string name="caffeine_label">קפאין</string>
 </resources>

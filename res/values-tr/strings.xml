@@ -24,7 +24,6 @@
   <string name="sync_label">Eşitleme</string>
   <string name="volume_panel_label">Ses paneli</string>
   <string name="usb_tether_label">USB tethering</string>
-  <string name="battery_saver_label">Pil tasarrufu</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kafein</string>
 </resources>

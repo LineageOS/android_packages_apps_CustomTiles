@@ -24,7 +24,6 @@
   <string name="sync_label">Синхронизация</string>
   <string name="volume_panel_label">Панель громкости</string>
   <string name="usb_tether_label">USB-модем</string>
-  <string name="battery_saver_label">Энергосбережение</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Запрет сна</string>
 </resources>

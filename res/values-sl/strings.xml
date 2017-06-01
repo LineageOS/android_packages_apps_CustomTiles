@@ -24,7 +24,6 @@
   <string name="sync_label">Sinhronizacija</string>
   <string name="volume_panel_label">Plošča za glasnost</string>
   <string name="usb_tether_label">Delj. mob. int. USB</string>
-  <string name="battery_saver_label">Ohranjevalnik baterije</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kofein</string>
 </resources>

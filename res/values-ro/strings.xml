@@ -24,7 +24,6 @@
   <string name="sync_label">Sincronizare</string>
   <string name="volume_panel_label">Panou de volum</string>
   <string name="usb_tether_label">Tethering prin USB</string>
-  <string name="battery_saver_label">Economizor baterie</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Cofeină</string>
 </resources>

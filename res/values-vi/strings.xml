@@ -24,7 +24,6 @@
   <string name="sync_label">Đồng bộ hoá</string>
   <string name="volume_panel_label">Bảng điều khiển âm lượng</string>
   <string name="usb_tether_label">Chia sẻ kết nối qua USB</string>
-  <string name="battery_saver_label">Tiết kiệm pin</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Chất gây nghiện</string>
 </resources>
