@@ -24,7 +24,6 @@
   <string name="sync_label">Sinc</string>
   <string name="volume_panel_label">Panell de volum</string>
   <string name="usb_tether_label">Ancoratge USB</string>
-  <string name="battery_saver_label">Estalvi de bateria</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Cafeïna</string>
 </resources>

@@ -20,6 +20,5 @@
   <string name="ambient_display_label">Omgivningsskärm</string>
   <string name="sync_label">Synk</string>
   <string name="volume_panel_label">Volympanel</string>
-  <string name="battery_saver_label">Strömsparläge</string>
   <!-- Caffeine -->
 </resources>

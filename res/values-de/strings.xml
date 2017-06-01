@@ -24,7 +24,6 @@
   <string name="sync_label">Synchronisation</string>
   <string name="volume_panel_label">Lautstärkeregler</string>
   <string name="usb_tether_label">USB-Tethering</string>
-  <string name="battery_saver_label">Energiesparmodus</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Koffein</string>
 </resources>

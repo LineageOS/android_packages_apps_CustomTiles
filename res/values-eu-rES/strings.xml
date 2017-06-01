@@ -24,7 +24,6 @@
   <string name="sync_label">Sinkronizazioa</string>
   <string name="volume_panel_label">Bolumen panela</string>
   <string name="usb_tether_label">USB tethering</string>
-  <string name="battery_saver_label">Bateria aurrezlea</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kafeina</string>
 </resources>

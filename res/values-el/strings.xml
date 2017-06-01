@@ -24,7 +24,6 @@
   <string name="sync_label">Συγχρονισμός</string>
   <string name="volume_panel_label">Πάνελ έντασης</string>
   <string name="usb_tether_label">Πρόσδεση USB</string>
-  <string name="battery_saver_label">Εξοικονόμηση μπαταρίας</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Καφεΐνη</string>
 </resources>

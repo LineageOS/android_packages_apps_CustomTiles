@@ -24,7 +24,6 @@
   <string name="sync_label">Synkronointi</string>
   <string name="volume_panel_label">Äänenvoimakkuuspaneeli</string>
   <string name="usb_tether_label">USB-jakaminen</string>
-  <string name="battery_saver_label">Virransäästö</string>
   <!-- Caffeine -->
   <string name="caffeine_label">Kofeiini</string>
 </resources>
