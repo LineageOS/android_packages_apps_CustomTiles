@@ -18,7 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Blocos extras</string>
   <!-- Labels -->
-  <string name="ambient_display_label">Brilho adaptável</string>
+  <string name="ambient_display_label">Tela ambiente</string>
   <string name="network_adb_label">ADB pela rede</string>
   <string name="heads_up_label">Notificações pop-up</string>
   <string name="sync_label">Sincronização</string>

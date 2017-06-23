@@ -25,4 +25,5 @@
   <string name="volume_panel_label">Panneau de volume</string>
   <string name="usb_tether_label">Modem USB</string>
   <!-- Caffeine -->
+  <string name="caffeine_label">Caffeine</string>
 </resources>
