@@ -27,9 +27,6 @@ import java.util.HashMap;
 public class MainActivity extends Activity {
 
     private static HashMap<String, Intent> LONG_CLICK_ACTIONS = new HashMap<String, Intent>() {{
-        put(".AdbOverNetworkTile", new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
-        put(".AmbientDisplayTile", new Intent(Settings.ACTION_DISPLAY_SETTINGS));
-        put(".HeadsUpTile", new Intent(Settings.ACTION_NOTIFICATION_SETTINGS));
         put(".SyncTile", new Intent(Settings.ACTION_SYNC_SETTINGS));
         put(".UsbTetherTile", new Intent(Settings.ACTION_WIRELESS_SETTINGS));
         put(".VolumePanelTile", new Intent(Settings.ACTION_SOUND_SETTINGS));

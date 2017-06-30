@@ -52,39 +52,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Ambient display -->
-        <service
-            android:name=".AmbientDisplayTile"
-            android:icon="@drawable/ic_ambient_display_on"
-            android:label="@string/ambient_display_label"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
-
-        <!-- ADB over network -->
-        <service
-            android:name=".AdbOverNetworkTile"
-            android:icon="@drawable/ic_network_adb_off"
-            android:label="@string/network_adb_label"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
-
-        <!-- Heads up -->
-        <service
-            android:name=".HeadsUpTile"
-            android:icon="@drawable/ic_heads_up_on"
-            android:label="@string/heads_up_label"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
-
         <!-- Sync -->
         <service
             android:name=".SyncTile"
@@ -101,17 +68,6 @@
             android:name=".VolumePanelTile"
             android:icon="@drawable/ic_volume_panel"
             android:label="@string/volume_panel_label"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
-
-        <!-- Caffeine-->
-        <service
-            android:name=".CaffeineTile"
-            android:icon="@drawable/ic_caffeine_off"
-            android:label="@string/caffeine_label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
